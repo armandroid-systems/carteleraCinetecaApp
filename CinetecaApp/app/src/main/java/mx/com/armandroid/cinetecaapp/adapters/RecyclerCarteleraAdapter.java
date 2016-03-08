@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import java.util.zip.Inflater;
 
 import mx.com.armandroid.cinetecaapp.R;
+import mx.com.armandroid.cinetecaapp.interfaces.CardClick;
 import mx.com.armandroid.cinetecaapp.model.Pelicula;
 import mx.com.armandroid.cinetecaapp.model.Respuesta;
 import mx.com.armandroid.cinetecaapp.utils.ItemCarteleraHolder;
@@ -20,15 +21,17 @@ public class RecyclerCarteleraAdapter extends RecyclerView.Adapter<ItemCartelera
 
     private Respuesta mData;
     private Pelicula peli;
+    private CardClick clickCard;
 
-    public RecyclerCarteleraAdapter(Respuesta data) {
+    public RecyclerCarteleraAdapter(Respuesta data, CardClick click) {
         this.mData = data;
+        this.clickCard = click;
     }
 
     @Override
     public ItemCarteleraHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cartelera,parent, false);
-        return new ItemCarteleraHolder(viewItem);
+        return new ItemCarteleraHolder(viewItem, clickCard);
     }
 
     @Override
