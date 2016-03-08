@@ -13,5 +13,5 @@ public class Constants {
     public static final String VIEW_SUMMARY = "view_list";
     public static final String VIEW_DETAIL = "view_detail";
 
-    public static final String API_ENDPOINT = "http://127.0.0.1:1331/carteleradia";
+    public static final String API_ENDPOINT = "http://127.0.0.1:1331/carteleradia/";
 }

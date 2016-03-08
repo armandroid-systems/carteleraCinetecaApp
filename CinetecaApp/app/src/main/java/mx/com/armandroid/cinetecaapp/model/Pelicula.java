@@ -11,7 +11,5 @@ public class Pelicula {
     public String horarios;
     public String urlImg;
     public String urlDetail;
-    public String sinopsisCompleta;
-    public String trailer;
 
 }

@@ -20,7 +20,7 @@ public class CinetecaApi {
         return retrofit.create(CinetecaService.class);
     }
 
-    public CinetecaApi(CinetecaService cinetecaService) {
+    public CinetecaApi() {
         this.cinetecaService = init();
     }
 

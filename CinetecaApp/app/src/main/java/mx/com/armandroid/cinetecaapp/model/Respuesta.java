@@ -8,5 +8,5 @@ import java.util.List;
 public class Respuesta {
 
     public int error;
-    public List<Pelicula> peliculas;
+    public List<Object> peliculas;
 }

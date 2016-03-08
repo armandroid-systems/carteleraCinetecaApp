@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">CinetecaApp</string>
     <string name="title_activity_main">MainActivity</string>
+    <!--Labels-->
+    <string name="label_titulo">Titulo Pelicula</string>
+    <string name="label_ficha">Ficha tecnica</string>
+    <string name="label_sinopsis">Mónica, una trabajadora social, debe enfrentar la compleja enfermedad visual de su hijo de once años, quien requiere un urgente trasplante de córnea para evitar la ceguera.  Agobiada...</string>
+    <string name="label_horarios">Martes 08 de marzo de 2016\nSALA 7: 15:30, 17:45</string>
+    <string name="label_vermas">Ver mas</string>
+    <string name="label_compartir">Compartir</string>
+    <string name="label_acalendario">Agendar</string>
 </resources>
