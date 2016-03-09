@@ -9,9 +9,9 @@ import retrofit2.http.Path;
  * Created by zadtankus on 7/03/16.
  */
 public interface CinetecaService {
-    @GET("getCheerioToDay")
+    @GET("getCartelera/{dia}")
     Call<Respuesta> carteleraDia(@Path("dia") String dia);
 
-    @GET("getDetail")
-    Call<Respuesta> detallePelicula(@Path("idTit") String idTit);
+    @GET("getDetail/{pelicula}")
+    Call<Respuesta> detallePelicula(@Path("pelicula") String idTit);
 }

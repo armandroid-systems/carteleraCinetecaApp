@@ -23,12 +23,13 @@ public class ItemCarteleraHolder extends RecyclerView.ViewHolder implements View
     public ItemCarteleraHolder(View itemView, CardClick mCard) {
         super(itemView);
         this.cardClick = mCard;
-        tituloFicha = (TextView) itemView.findViewById(R.id.textViewTitulo);
-        sinopsis = (TextView) itemView.findViewById(R.id.textViewSinopsis);
-        horario = (TextView) itemView.findViewById(R.id.textViewHorarios);
-        mas = (TextView) itemView.findViewById(R.id.textViewMas);
-        compartir = (TextView) itemView.findViewById(R.id.textViewCompartir);
-        calendario = (TextView) itemView.findViewById(R.id.addCalendar);
+
+        tituloFicha     = (TextView) itemView.findViewById(R.id.textViewTitulo);
+        sinopsis        = (TextView) itemView.findViewById(R.id.textViewSinopsis);
+        horario         = (TextView) itemView.findViewById(R.id.textViewHorarios);
+        mas             = (TextView) itemView.findViewById(R.id.textViewMas);
+        compartir       = (TextView) itemView.findViewById(R.id.textViewCompartir);
+        calendario      = (TextView) itemView.findViewById(R.id.addCalendar);
 
         mas.setOnClickListener(this);
         compartir.setOnClickListener(this);

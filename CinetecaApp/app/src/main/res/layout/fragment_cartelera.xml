@@ -5,14 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageViewFail"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/cloud_fail" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBarCartelera"
+            android:layout_gravity="center_horizontal" />
+
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerBudget"
+            android:id="@+id/recyclerCartelera"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
         </android.support.v7.widget.RecyclerView>
     </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>
