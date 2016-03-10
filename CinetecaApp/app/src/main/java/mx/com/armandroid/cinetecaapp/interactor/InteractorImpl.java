@@ -76,4 +76,8 @@ public class InteractorImpl implements Interactor{
         }
 
     }
+
+    public Context getmContext() {
+        return mContext;
+    }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import mx.com.armandroid.cinetecaapp.interfaces.CardClick;
 import mx.com.armandroid.cinetecaapp.interfaces.CarteleraView;
 import mx.com.armandroid.cinetecaapp.model.Respuesta;
 import mx.com.armandroid.cinetecaapp.presenter.PresenterCarteleraImpl;
+import mx.com.armandroid.cinetecaapp.utils.Constants;
+import mx.com.armandroid.cinetecaapp.utils.ScreenManager;
 
 /**
  * Created by zadtankus on 7/03/16.
@@ -59,12 +62,27 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
     }
 
     @Override
-    public void veADetallePelicula(String id, String param) {
-
+    public void veADetallePelicula(String id) {
+        try {
+            Bundle mBundle = new Bundle();
+            mBundle.putString(Constants.KEY_PARAM,id);
+            ScreenManager.screenChange(getActivity(),
+                    R.id.screenWrapper,
+                    FragmentDetallePelicula.class,
+                    mBundle,
+                    Constants.VIEW_DETAIL,
+                    Constants.BIN_FALSE);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (java.lang.InstantiationException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void createRecyclerView(RecyclerCarteleraAdapter adapter) {
+        cartelera.setVisibility(View.VISIBLE);
+        Log.d(TAG,"SETTING RECYCLER");
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         cartelera.setLayoutManager(llm);
         cartelera.setAdapter(adapter);

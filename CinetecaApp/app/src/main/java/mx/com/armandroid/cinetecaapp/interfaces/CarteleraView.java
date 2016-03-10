@@ -10,7 +10,7 @@ public interface CarteleraView {
 
 
     void createRecyclerView(RecyclerCarteleraAdapter adapter);
-    void veADetallePelicula(String id, String param);
+    void veADetallePelicula(String id);
     void agregaACalendario(String evento);
     void muestraMensaje(String msj);
     void muestraImgError();

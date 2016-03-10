@@ -2,6 +2,7 @@ package mx.com.armandroid.cinetecaapp.utils;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import mx.com.armandroid.cinetecaapp.R;
@@ -12,13 +13,15 @@ import mx.com.armandroid.cinetecaapp.interfaces.CardClick;
  */
 public class ItemCarteleraHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+    private CardClick cardClick;
+
     public TextView tituloFicha;
     public TextView sinopsis;
     public TextView horario;
     public TextView mas;
     public TextView compartir;
     public TextView calendario;
-    private CardClick cardClick;
+    public ImageView peliculaFoto;
 
     public ItemCarteleraHolder(View itemView, CardClick mCard) {
         super(itemView);
@@ -29,7 +32,8 @@ public class ItemCarteleraHolder extends RecyclerView.ViewHolder implements View
         horario         = (TextView) itemView.findViewById(R.id.textViewHorarios);
         mas             = (TextView) itemView.findViewById(R.id.textViewMas);
         compartir       = (TextView) itemView.findViewById(R.id.textViewCompartir);
-        calendario      = (TextView) itemView.findViewById(R.id.addCalendar);
+        calendario      = (TextView) itemView.findViewById(R.id.textViewCalendario);
+        peliculaFoto    = (ImageView) itemView.findViewById(R.id.imageViewPelicula);
 
         mas.setOnClickListener(this);
         compartir.setOnClickListener(this);
@@ -38,6 +42,6 @@ public class ItemCarteleraHolder extends RecyclerView.ViewHolder implements View
 
     @Override
     public void onClick(View v) {
-        cardClick.hacerAccion(v.getId());
+        cardClick.hacerAccion(v.getId(),getAdapterPosition());
     }
 }
