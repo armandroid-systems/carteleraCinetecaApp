@@ -13,5 +13,4 @@ public interface PresenterCartelera {
     RecyclerCarteleraAdapter getCarteleraAdapter(List<Pelicula> data);
     void clickButtonAdapter();
     void getCarteleraFromApi(String date);
-
 }

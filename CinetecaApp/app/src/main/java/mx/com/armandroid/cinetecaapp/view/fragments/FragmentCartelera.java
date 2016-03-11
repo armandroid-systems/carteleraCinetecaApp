@@ -14,9 +14,8 @@ import android.widget.ProgressBar;
 import mx.com.armandroid.cinetecaapp.R;
 import mx.com.armandroid.cinetecaapp.adapters.RecyclerCarteleraAdapter;
 import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
-import mx.com.armandroid.cinetecaapp.interfaces.CardClick;
 import mx.com.armandroid.cinetecaapp.interfaces.CarteleraView;
-import mx.com.armandroid.cinetecaapp.model.Respuesta;
+import mx.com.armandroid.cinetecaapp.model.Pelicula;
 import mx.com.armandroid.cinetecaapp.presenter.PresenterCarteleraImpl;
 import mx.com.armandroid.cinetecaapp.utils.Constants;
 import mx.com.armandroid.cinetecaapp.utils.ScreenManager;
@@ -31,6 +30,8 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
     private ImageView imageView;
     private RecyclerView cartelera;
 
+    private PresenterCarteleraImpl presenter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,8 +41,8 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
         imageView = (ImageView) carteleraView.findViewById(R.id.imageViewFail);
         cartelera = (RecyclerView) carteleraView.findViewById(R.id.recyclerCartelera);
 
-        PresenterCarteleraImpl presenter = new PresenterCarteleraImpl(new InteractorImpl(getContext()),this);
-        presenter.getCarteleraFromApi(null);
+        presenter = new PresenterCarteleraImpl(new InteractorImpl(getContext()),this);
+        presenter.getCarteleraFromApi("2016-03-11");
 
         return carteleraView;
     }
@@ -62,10 +63,10 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
     }
 
     @Override
-    public void veADetallePelicula(String id) {
+    public void veADetallePelicula(Pelicula pelicula) {
         try {
             Bundle mBundle = new Bundle();
-            mBundle.putString(Constants.KEY_PARAM,id);
+            mBundle.putParcelable(Constants.KEY_PARAM, pelicula );
             ScreenManager.screenChange(getActivity(),
                     R.id.screenWrapper,
                     FragmentDetallePelicula.class,

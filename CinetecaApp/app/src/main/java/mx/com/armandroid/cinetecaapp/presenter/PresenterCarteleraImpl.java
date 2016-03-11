@@ -4,6 +4,7 @@ import android.util.Log;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mx.com.armandroid.cinetecaapp.R;
@@ -51,22 +52,25 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
 
     @Override
     public void onError(String message) {
-        mCartelera.escondeLoader();
-        /*mCartelera.muestraMensaje(message);
-        mCartelera.muestraImgError();*/
-        try {
-            mCartelera.createRecyclerView(getCarteleraAdapter(Utils.jsonList(Constants.API_RESPONSE_FAKE,1)));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        //TODO only for debug
+        /* try {
+        mCartelera.createRecyclerView(getCarteleraAdapter(Utils.jsonList(Constants.API_RESPONSE_FAKE,1)));
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }*/
+        Log.d(TAG,"ERROR"+message);
+        mCartelera.muestraMensaje(message);
+        mCartelera.muestraImgError();
+
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void onSuccess(Respuesta param) {
-        comodin = param;
         mCartelera.escondeLoader();
+        comodin = param;
         if(!param.peliculas.isEmpty()){
-           // mCartelera.createRecyclerView(getCarteleraAdapter(param));
+          mCartelera.createRecyclerView(getCarteleraAdapter(param.peliculas));
         }else{
             mCartelera.muestraImgError();
         }
@@ -77,11 +81,7 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
         switch(id){
             case R.id.textViewMas:
                 Log.d(TAG,"PRESIONO MAS");
-                try {
-                    mCartelera.veADetallePelicula(Utils.jsonList(Constants.API_RESPONSE_FAKE,1).get(idElement).urlDetail);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                mCartelera.veADetallePelicula(comodin.peliculas.get(idElement));
                 break;
             case R.id.textViewCompartir:
                 break;
@@ -89,5 +89,9 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
                 break;
 
         }
+    }
+
+    public Respuesta getComodin() {
+        return comodin;
     }
 }

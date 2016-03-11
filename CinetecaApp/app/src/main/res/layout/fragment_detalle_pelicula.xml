@@ -21,7 +21,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/imageView3"
+                android:id="@+id/imageViewImgDetalle"
                 android:src="@drawable/cineteca_logo" />
         </LinearLayout>
 
@@ -32,6 +32,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_format_title_grey600_24dp"
+                android:text="New Text"
+                android:id="@+id/textViewTituloDetalle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_filmstrip_grey600_24dp"
+                android:text="New Text"
+                android:id="@+id/textViewSinopsisCompleta" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_calendar_clock_grey600_24dp"
+                android:text="New Text"
+                android:id="@+id/textViewHorariosDetalle" />
         </LinearLayout>
     </LinearLayout>
 

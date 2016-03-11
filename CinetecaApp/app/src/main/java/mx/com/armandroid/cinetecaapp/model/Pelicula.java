@@ -14,6 +14,9 @@ public class Pelicula implements Parcelable {
     public String horarios;
     public String urlImg;
     public String urlDetail;
+    public String sinopsisCompleta;
+    public String trailer;
+    public String imgUrl;
 
 
     @Override
@@ -29,6 +32,9 @@ public class Pelicula implements Parcelable {
         dest.writeString(this.horarios);
         dest.writeString(this.urlImg);
         dest.writeString(this.urlDetail);
+        dest.writeString(this.sinopsisCompleta);
+        dest.writeString(this.trailer);
+        dest.writeString(this.imgUrl);
     }
 
     public Pelicula() {
@@ -41,9 +47,12 @@ public class Pelicula implements Parcelable {
         this.horarios = in.readString();
         this.urlImg = in.readString();
         this.urlDetail = in.readString();
+        this.sinopsisCompleta = in.readString();
+        this.trailer = in.readString();
+        this.imgUrl = in.readString();
     }
 
-    public static final Parcelable.Creator<Pelicula> CREATOR = new Parcelable.Creator<Pelicula>() {
+    public static final Creator<Pelicula> CREATOR = new Creator<Pelicula>() {
         public Pelicula createFromParcel(Parcel source) {
             return new Pelicula(source);
         }

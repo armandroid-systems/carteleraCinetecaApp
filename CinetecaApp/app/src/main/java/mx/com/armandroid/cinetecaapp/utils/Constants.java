@@ -13,7 +13,7 @@ public class Constants {
     public static final String VIEW_SUMMARY = "view_list";
     public static final String VIEW_DETAIL = "view_detail";
 
-    public static final String API_ENDPOINT = "http://10.230.11.148:1337/carteleradia/";
+    public static final String API_ENDPOINT = "http://192.168.100.4:1337/carteleradia/";
     public static final String URL_YOUTUBE = "http://www.youtube.com/watch?v=";
     public static final String API_RESPONSE_FAKE ="{\n" +
             "  \"error\": 200,\n" +
