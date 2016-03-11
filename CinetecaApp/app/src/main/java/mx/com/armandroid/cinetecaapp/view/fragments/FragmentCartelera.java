@@ -1,5 +1,6 @@
 package mx.com.armandroid.cinetecaapp.view.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -92,5 +93,14 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
     @Override
     public void agregaACalendario(String evento) {
 
+    }
+
+    @Override
+    public void compartirPelicula(String pelicula) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, pelicula);
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.label_compartir_ventana)));
     }
 }

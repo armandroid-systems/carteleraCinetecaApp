@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
 
     @Override
     public void cierraAplicacion() {
-        Log.d(TAG,"Cerrando aplicacion debido a la falta de conexion...");
+        Log.d(TAG,"SIN CONEXION, CERRANDO APP...");
         finish();
     }
 

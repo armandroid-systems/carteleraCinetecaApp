@@ -2,6 +2,8 @@ package mx.com.armandroid.cinetecaapp.presenter;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
 
     @Override
     public RecyclerCarteleraAdapter getCarteleraAdapter(List<Pelicula> data) {
+        Log.d(TAG, "SOLICITANDO DATOS A LA API...");
         return new RecyclerCarteleraAdapter(data, this, mInteractor.getmContext());
     }
 
@@ -53,23 +56,24 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
     @Override
     public void onError(String message) {
         //TODO only for debug
-        /* try {
-        mCartelera.createRecyclerView(getCarteleraAdapter(Utils.jsonList(Constants.API_RESPONSE_FAKE,1)));
-    } catch (JSONException e) {
-        e.printStackTrace();
-    }*/
-        Log.d(TAG,"ERROR"+message);
+        Log.e(TAG, "ERROR API [" + message + " ]");
+        comodin = new Gson().fromJson(Constants.API_RESPONSE_FAKE,Respuesta.class);
+         mCartelera.createRecyclerView(getCarteleraAdapter(comodin.peliculas));
+
+        /*Log.d(TAG,"ERROR"+message);
         mCartelera.muestraMensaje(message);
-        mCartelera.muestraImgError();
+        mCartelera.muestraImgError();*/
 
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void onSuccess(Respuesta param) {
+        Log.d(TAG,"CONSULTA EXITOSA ["+param.error+" ]");
         mCartelera.escondeLoader();
         comodin = param;
         if(!param.peliculas.isEmpty()){
+            Log.d(TAG,"SE ENCONTRARON DATOS...");
           mCartelera.createRecyclerView(getCarteleraAdapter(param.peliculas));
         }else{
             mCartelera.muestraImgError();
@@ -80,18 +84,18 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
     public void hacerAccion(int id, int idElement) {
         switch(id){
             case R.id.textViewMas:
-                Log.d(TAG,"PRESIONO MAS");
+                Log.d(TAG,"REDIRIGIENDO A DETALLE...");
                 mCartelera.veADetallePelicula(comodin.peliculas.get(idElement));
                 break;
             case R.id.textViewCompartir:
+                Log.d(TAG,"SHARE INTENT ...");
+                mCartelera.compartirPelicula(Constants.URL_CINETECA+comodin.peliculas.get(idElement).urlDetail);
                 break;
-            case R.id.addCalendar:
+            case R.id.textViewCalendario:
+                Log.d(TAG,"ENVIANDO DATOS A CALENDARIO...");
+                mCartelera.agregaACalendario(comodin.peliculas.get(idElement).horarios);
                 break;
 
         }
-    }
-
-    public Respuesta getComodin() {
-        return comodin;
     }
 }

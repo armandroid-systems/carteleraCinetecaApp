@@ -9,4 +9,5 @@
     <string name="label_vermas">Ver mas</string>
     <string name="label_compartir">Compartir</string>
     <string name="label_acalendario">Agendar</string>
+    <string name="label_compartir_ventana">Comparte esta pelicula con: </string>
 </resources>

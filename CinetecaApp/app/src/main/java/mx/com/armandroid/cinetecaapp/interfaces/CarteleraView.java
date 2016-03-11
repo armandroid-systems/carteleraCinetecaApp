@@ -13,6 +13,7 @@ public interface CarteleraView {
     void createRecyclerView(RecyclerCarteleraAdapter adapter);
     void veADetallePelicula(Pelicula pelicula);
     void agregaACalendario(String evento);
+    void compartirPelicula(String pelicula);
     void muestraMensaje(String msj);
     void muestraImgError();
     void escondeLoader();

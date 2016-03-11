@@ -8,7 +8,7 @@ import mx.com.armandroid.cinetecaapp.model.Pelicula;
 public interface DetallePeliculaView {
 
     void colocarDatos(Pelicula datos);
-    void verTrailer(String id);
+    void verTrailer();
     void colocaMensaje(String mensaje);
     void ocultaImagen();
 }

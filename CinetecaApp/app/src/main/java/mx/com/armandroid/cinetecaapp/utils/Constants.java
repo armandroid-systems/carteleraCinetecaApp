@@ -15,6 +15,17 @@ public class Constants {
 
     public static final String API_ENDPOINT = "http://192.168.100.4:1337/carteleradia/";
     public static final String URL_YOUTUBE = "http://www.youtube.com/watch?v=";
+        public static final String URL_CINETECA = "http://www.cinetecanacional.net/";
+        public static final String API_DETAIL_FAKE = "{\n" +
+                "  \"error\": 200,\n" +
+                "  \"peliculas\": [\n" +
+                "    {\n" +
+                "      \"sinopsisCompleta\": \"En una pequeña barbería de la capital suiza, Kari Tellenbach, el dueño del establecimiento, deleita a sus clientes de una forma muy peculiar. El barbero nació con el labio leporino en el seno de una familia pobre, sin embargo, su madre lo cuidó cariñosamente y el niño se convirtió en un alegre joven. La más reciente película del veterano director Xavier Coller fue nominada a varios galardones en los Premios del Cine Suizo.\",\n" +
+                "      \"imgUrl\": \"http://www.cinetecanacional.net/imagenes/img_peliculas/14185-B.jpg\",\n" +
+                "      \"trailer\": \"\"\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
     public static final String API_RESPONSE_FAKE ="{\n" +
             "  \"error\": 200,\n" +
             "  \"peliculas\": [\n" +
