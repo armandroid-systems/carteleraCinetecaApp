@@ -3,13 +3,17 @@ package mx.com.armandroid.cinetecaapp.view.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import mx.com.armandroid.cinetecaapp.R;
 import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
@@ -25,12 +29,15 @@ public class FragmentDetallePelicula extends BaseFragment implements DetallePeli
     private static final String TAG = FragmentDetallePelicula.class.getSimpleName();
 
     private ImageView imgDetalle;
+    private ImageView imgFail;
     private TextView title;
     private TextView sinopsis;
     private TextView horarios;
     private Pelicula peliDeCartelera;
     private FloatingActionButton fabTrailer;
     private PresenterDetallePeliculaImpl presenterDetalle;
+    private AVLoadingIndicatorView progressDetalle;
+    private LinearLayout linearWrapper;
 
     @Nullable
     @Override
@@ -39,7 +46,10 @@ public class FragmentDetallePelicula extends BaseFragment implements DetallePeli
 
         presenterDetalle =  new PresenterDetallePeliculaImpl(new InteractorImpl(getContext()),this);
 
+        linearWrapper = (LinearLayout) detalleView.findViewById(R.id.detailMainWrapper);
+        progressDetalle = (AVLoadingIndicatorView) detalleView.findViewById(R.id.progressBarDetalle);
         imgDetalle = (ImageView) detalleView.findViewById(R.id.imageViewImgDetalle);
+        imgFail = (ImageView) detalleView.findViewById(R.id.imageViewFail);
         title = (TextView) detalleView.findViewById(R.id.textViewTituloDetalle);
         sinopsis = (TextView) detalleView.findViewById(R.id.textViewSinopsisCompleta);
         horarios = (TextView) detalleView.findViewById(R.id.textViewHorariosDetalle);
@@ -47,7 +57,8 @@ public class FragmentDetallePelicula extends BaseFragment implements DetallePeli
 
         if(mParam != null){
             peliDeCartelera = (Pelicula)mParam;
-           presenterDetalle.getDetallePelicula(peliDeCartelera.urlDetail);
+            Log.d(TAG, "PARAMETRO ENCONTRADO...");
+            presenterDetalle.getDetallePelicula(peliDeCartelera.urlDetail);
         }
 
         fabTrailer.setOnClickListener(this);
@@ -56,8 +67,18 @@ public class FragmentDetallePelicula extends BaseFragment implements DetallePeli
     }
 
     @Override
-    public void ocultaImagen() {
+    public void mostrarImagen() {
+        imgFail.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void ocultarLoader() {
+        progressDetalle.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void muestraBotonTrailer() {
+        fabTrailer.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -73,6 +94,8 @@ public class FragmentDetallePelicula extends BaseFragment implements DetallePeli
 
     @Override
     public void colocarDatos(Pelicula datos) {
+        linearWrapper.setVisibility(View.VISIBLE);
+        peliDeCartelera.trailer = datos.trailer;
         title.setText(peliDeCartelera.peliculaTitulo);
         sinopsis.setText(datos.sinopsisCompleta);
         horarios.setText(peliDeCartelera.horarios);

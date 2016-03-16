@@ -14,5 +14,5 @@ public interface CinetecaService {
     Call<Respuesta> carteleraDia(@Query("dia") String dia);
 
     @GET("getDetail/{pelicula}")
-    Call<Respuesta> detallePelicula(@Path("pelicula") String idTit);
+    Call<Respuesta> detallePelicula(@Query("pelicula") String pelicula);
 }

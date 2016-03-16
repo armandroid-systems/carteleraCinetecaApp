@@ -10,5 +10,7 @@ public interface DetallePeliculaView {
     void colocarDatos(Pelicula datos);
     void verTrailer();
     void colocaMensaje(String mensaje);
-    void ocultaImagen();
+    void mostrarImagen();
+    void ocultarLoader();
+    void muestraBotonTrailer();
 }

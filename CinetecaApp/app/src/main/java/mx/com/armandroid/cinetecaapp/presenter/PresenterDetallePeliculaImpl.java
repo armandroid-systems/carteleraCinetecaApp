@@ -1,5 +1,7 @@
 package mx.com.armandroid.cinetecaapp.presenter;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -45,20 +47,25 @@ public class PresenterDetallePeliculaImpl implements PresenterDetallePelicula, C
 
     @Override
     public void onError(String message) {
-
-        //detalleView.colocaMensaje(message);
+        Log.e(TAG, message);
+        detalleView.ocultarLoader();
+        detalleView.colocaMensaje(message);
+        detalleView.mostrarImagen();
         //TODO debug only
 
-        detalleView.colocarDatos((new Gson().fromJson(Constants.API_DETAIL_FAKE,Respuesta.class)).peliculas.get(0));
+        //detalleView.colocarDatos((new Gson().fromJson(Constants.API_DETAIL_FAKE,Respuesta.class)).peliculas.get(0));
 
     }
 
     @Override
     public void onSuccess(Respuesta param) {
-        if(param.peliculas.isEmpty()){
+        detalleView.ocultarLoader();
+        if(!param.peliculas.isEmpty()){
+            Log.d(TAG, "CON PELICULAS...");
+           if(!param.peliculas.get(0).trailer.isEmpty()){ detalleView.muestraBotonTrailer(); }
            detalleView.colocarDatos(param.peliculas.get(0));
         }else{
-
+            detalleView.mostrarImagen();
         }
     }
 }

@@ -57,12 +57,11 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
     public void onError(String message) {
         //TODO only for debug
         Log.e(TAG, "ERROR API [" + message + " ]");
-        comodin = new Gson().fromJson(Constants.API_RESPONSE_FAKE,Respuesta.class);
-         mCartelera.createRecyclerView(getCarteleraAdapter(comodin.peliculas));
-
-        /*Log.d(TAG,"ERROR"+message);
+        /*comodin = new Gson().fromJson(Constants.API_RESPONSE_FAKE,Respuesta.class);
+         mCartelera.createRecyclerView(getCarteleraAdapter(comodin.peliculas));*/
+        mCartelera.escondeLoader();
         mCartelera.muestraMensaje(message);
-        mCartelera.muestraImgError();*/
+        mCartelera.muestraImgError();
 
     }
 
@@ -93,7 +92,7 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
                 break;
             case R.id.textViewCalendario:
                 Log.d(TAG,"ENVIANDO DATOS A CALENDARIO...");
-                mCartelera.agregaACalendario(comodin.peliculas.get(idElement).horarios);
+                mCartelera.agregaACalendario(comodin.peliculas.get(idElement));
                 break;
 
         }

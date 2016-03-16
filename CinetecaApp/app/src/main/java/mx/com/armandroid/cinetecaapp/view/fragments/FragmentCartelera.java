@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import mx.com.armandroid.cinetecaapp.R;
 import mx.com.armandroid.cinetecaapp.adapters.RecyclerCarteleraAdapter;
 import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
@@ -20,6 +22,7 @@ import mx.com.armandroid.cinetecaapp.model.Pelicula;
 import mx.com.armandroid.cinetecaapp.presenter.PresenterCarteleraImpl;
 import mx.com.armandroid.cinetecaapp.utils.Constants;
 import mx.com.armandroid.cinetecaapp.utils.ScreenManager;
+import mx.com.armandroid.cinetecaapp.utils.Utils;
 
 /**
  * Created by zadtankus on 7/03/16.
@@ -27,7 +30,7 @@ import mx.com.armandroid.cinetecaapp.utils.ScreenManager;
 public class FragmentCartelera extends BaseFragment implements CarteleraView {
     private static final String TAG = FragmentCartelera.class.getSimpleName();
 
-    private ProgressBar mProgress;
+    private AVLoadingIndicatorView mProgress;
     private ImageView imageView;
     private RecyclerView cartelera;
 
@@ -38,12 +41,12 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View carteleraView = inflater.inflate(R.layout.fragment_cartelera,container,false);
 
-        mProgress = (ProgressBar) carteleraView.findViewById(R.id.progressBarCartelera);
+        mProgress = (AVLoadingIndicatorView) carteleraView.findViewById(R.id.progressBarCartelera);
         imageView = (ImageView) carteleraView.findViewById(R.id.imageViewFail);
         cartelera = (RecyclerView) carteleraView.findViewById(R.id.recyclerCartelera);
 
         presenter = new PresenterCarteleraImpl(new InteractorImpl(getContext()),this);
-        presenter.getCarteleraFromApi("2016-03-11");
+        presenter.getCarteleraFromApi("2016-03-16");
 
         return carteleraView;
     }
@@ -91,8 +94,11 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
     }
 
     @Override
-    public void agregaACalendario(String evento) {
-
+    public void agregaACalendario(Pelicula evento) {
+        Utils.addEvent(evento.peliculaTitulo,
+                Constants.CINETECA_LOCATION,
+                Utils.dateParser(evento.horarios),
+                getActivity());
     }
 
     @Override
