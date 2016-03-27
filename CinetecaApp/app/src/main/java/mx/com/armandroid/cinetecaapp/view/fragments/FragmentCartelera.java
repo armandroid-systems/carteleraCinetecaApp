@@ -105,9 +105,9 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView, To
                     Constants.VIEW_DETAIL,
                     Constants.BIN_FALSE);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            Log.e(TAG, "ERROR ON NAVIGATIION [" + e + "]");
         } catch (java.lang.InstantiationException e) {
-            e.printStackTrace();
+            Log.e(TAG, "ERROR ON NAVIGATIION [" + e + "]");
         }
     }
 
@@ -130,7 +130,7 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView, To
 
     @Override
     public void compartirPelicula(String pelicula) {
-        Utils.shareIntent(getActivity(),
+       Utils.shareIntent(getActivity(),
                 getString(R.string.label_compartir_ventana),
                 pelicula);
     }

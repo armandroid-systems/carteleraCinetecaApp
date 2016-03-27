@@ -7,6 +7,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import mx.com.armandroid.cinetecaapp.R;
 import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
 import mx.com.armandroid.cinetecaapp.interfaces.SplashView;
@@ -20,6 +22,7 @@ public class SplashActivity extends AppCompatActivity implements SplashView, Ale
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_splash);
     }
 

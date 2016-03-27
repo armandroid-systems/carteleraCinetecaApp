@@ -121,4 +121,8 @@ public class Utils {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(c.getTime());
     }
+    //Just test crashlytics
+    public static void forceCrash(){
+        throw new RuntimeException("I'm a awful crash :O");
+    }
 }

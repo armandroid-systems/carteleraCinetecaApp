@@ -70,10 +70,7 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
 
     @Override
     public void onError(String message) {
-        //TODO only for debug
         Log.e(TAG, "ERROR API [" + message + " ]");
-        /*comodin = new Gson().fromJson(Constants.API_RESPONSE_FAKE,Respuesta.class);
-         mCartelera.createRecyclerView(getCarteleraAdapter(comodin.peliculas));*/
         mCartelera.escondeLoader();
         mCartelera.muestraMensaje(message);
         mCartelera.muestraImgError();
