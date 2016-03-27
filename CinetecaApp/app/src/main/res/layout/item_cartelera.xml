@@ -34,6 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageViewPelicula"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/cineteca_logo"/>
 
             </LinearLayout>
@@ -49,8 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_format_title_grey600_24dp"
-                    android:drawablePadding="5dp"
-                    android:layout_marginTop="15dp"
+                    style="@style/textTitles"
                     android:text="@string/label_titulo"
                     android:id="@+id/textViewTitulo"
                      />
@@ -59,8 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_filmstrip_grey600_24dp"
-                    android:drawablePadding="5dp"
-                    android:layout_marginTop="15dp"
+                    style="@style/textGeneral"
                     android:text="@string/label_sinopsis"
                     android:id="@+id/textViewSinopsis" />
 
@@ -68,8 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_calendar_clock_grey600_24dp"
-                    android:drawablePadding="5dp"
-                    android:layout_marginTop="15dp"
+                    style="@style/textGeneral"
                     android:text="@string/label_horarios"
                     android:id="@+id/textViewHorarios" />
 
@@ -89,7 +87,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/ic_eye_grey600_24dp"
-                        android:drawablePadding="5dp"
+                        style="@style/textActions"
                         android:text="@string/label_vermas"
                         android:id="@+id/textViewMas" />
                     <TextView
@@ -97,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/label_compartir"
                         android:drawableLeft="@drawable/ic_share_grey600_24dp"
-                        android:drawablePadding="5dp"
+                        style="@style/textActions"
                         android:layout_weight="1"
                         android:id="@+id/textViewCompartir" />
                     <TextView
@@ -105,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/label_acalendario"
                         android:drawableLeft="@drawable/ic_calendar_plus_grey600_24dp"
-                        android:drawablePadding="5dp"
+                        style="@style/textActions"
                         android:layout_weight="1"
                         android:id="@+id/textViewCalendario" />
 

@@ -36,9 +36,29 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
         this.mCartelera = mCartelera;
     }
 
+    @Override
+    public void getCarteleraFromApi(String date) {
+        mCartelera.escondeRecycler();
+        mCartelera.escondeImagenError();
+        mCartelera.muestraLoader();
+        mInteractor.cartelera(date, this);
+    }
 
     @Override
-    public void clickButtonAdapter() {
+    public void getCarteleraFromRepo() {
+        colocaDatos(mInteractor.getCacheCartelera());
+    }
+
+
+    @Override
+    public void clickMenuButtonAdapter(int id) {
+        switch (id){
+            case R.id.calendarSearch:
+                mCartelera.muestraDatePicker();
+                break;
+            default:
+                break;
+        }
 
     }
 
@@ -46,11 +66,6 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
     public RecyclerCarteleraAdapter getCarteleraAdapter(List<Pelicula> data) {
         Log.d(TAG, "SOLICITANDO DATOS A LA API...");
         return new RecyclerCarteleraAdapter(data, this, mInteractor.getmContext());
-    }
-
-    @Override
-    public void getCarteleraFromApi(String date) {
-        mInteractor.cartelera(date, this);
     }
 
     @Override
@@ -68,15 +83,7 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
     @Override
     @SuppressWarnings("unchecked")
     public void onSuccess(Respuesta param) {
-        Log.d(TAG,"CONSULTA EXITOSA ["+param.error+" ]");
-        mCartelera.escondeLoader();
-        comodin = param;
-        if(!param.peliculas.isEmpty()){
-            Log.d(TAG,"SE ENCONTRARON DATOS...");
-          mCartelera.createRecyclerView(getCarteleraAdapter(param.peliculas));
-        }else{
-            mCartelera.muestraImgError();
-        }
+        colocaDatos(param);
     }
 
     @Override
@@ -95,6 +102,23 @@ public class PresenterCarteleraImpl implements PresenterCartelera, CinetecaCallb
                 mCartelera.agregaACalendario(comodin.peliculas.get(idElement));
                 break;
 
+        }
+    }
+
+    private void colocaDatos(Respuesta param){
+        Log.d(TAG,"CONSULTA EXITOSA ["+param.error+" ]");
+        mCartelera.escondeLoader();
+        comodin = param;
+        if(!param.peliculas.isEmpty()){
+            Log.d(TAG,"SE ENCONTRARON DATOS...");
+            mCartelera.colocarFechaEnBarra(param.peliculas.get(0).horarios.split("\n")[0]);
+            mCartelera.escondeImagenError();
+            mCartelera.createRecyclerView(getCarteleraAdapter(param.peliculas));
+        }else{
+            mCartelera.colocarFechaEnBarra("Fecha no disponible");
+            mCartelera.escondeRecycler();
+            mCartelera.muestraMensaje("Sin datos que mostrar");
+            mCartelera.muestraImgError();
         }
     }
 }

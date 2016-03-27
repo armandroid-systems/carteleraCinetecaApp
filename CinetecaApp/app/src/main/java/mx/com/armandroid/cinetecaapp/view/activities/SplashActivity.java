@@ -1,8 +1,10 @@
 package mx.com.armandroid.cinetecaapp.view.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import mx.com.armandroid.cinetecaapp.R;
@@ -10,15 +12,15 @@ import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
 import mx.com.armandroid.cinetecaapp.interfaces.SplashView;
 import mx.com.armandroid.cinetecaapp.presenter.PresenterSplashImpl;
 
-public class SplashActivity extends AppCompatActivity implements SplashView {
+public class SplashActivity extends AppCompatActivity implements SplashView, AlertDialog.OnClickListener {
     private static final String TAG = SplashActivity.class.getSimpleName();
+
+    private PresenterSplashImpl presenterSplash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        new PresenterSplashImpl(new InteractorImpl(SplashActivity.this),this).conexionActiva();
     }
 
     @Override
@@ -33,5 +35,32 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void muestraDialogo(String mensaje) {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setTitle(getString(R.string.app_name));
+        if(mensaje != null){
+            alertBuilder.setMessage(getString(R.string.message_server_error));
+        }else{
+            alertBuilder.setMessage(getString(R.string.message_no_network));
+        }
+        alertBuilder.setPositiveButton(android.R.string.ok,this);
+        alertBuilder.create();
+        alertBuilder.show();
+
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        presenterSplash.clickDialogAlert();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenterSplash = new PresenterSplashImpl(new InteractorImpl(SplashActivity.this),this);
+        presenterSplash.obtenerCartelera();
     }
 }

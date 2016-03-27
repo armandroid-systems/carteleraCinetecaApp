@@ -21,13 +21,18 @@ public class PresenterSplashImpl implements PresenterSplash, CinetecaCallback {
     }
 
     @Override
-    public void conexionActiva() {
-        mInteractor.compruebaConexion(this);
+    public void obtenerCartelera() {
+        mInteractor.cartelera(null,this);
+    }
+
+    @Override
+    public void clickDialogAlert() {
+        viewSplash.cierraAplicacion();
     }
 
     @Override
     public void onError(String message) {
-        viewSplash.cierraAplicacion();
+        viewSplash.muestraDialogo(message);
     }
 
     @Override

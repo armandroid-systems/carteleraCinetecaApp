@@ -1,14 +1,16 @@
 package mx.com.armandroid.cinetecaapp.view.fragments;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
 
 import mx.com.armandroid.cinetecaapp.utils.Constants;
 
 /**
  * Created by armando.dominguez on 07/03/2016.
  */
-public class BaseFragment extends Fragment{
+public class BaseFragment extends Fragment {
 
     protected Object mParam;
 

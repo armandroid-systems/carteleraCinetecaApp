@@ -7,4 +7,5 @@ public interface SplashView {
 
     void veAprincipal();
     void cierraAplicacion();
+    void muestraDialogo(String mensaje);
 }

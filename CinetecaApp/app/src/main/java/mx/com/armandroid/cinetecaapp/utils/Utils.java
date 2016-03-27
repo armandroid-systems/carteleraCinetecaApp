@@ -8,8 +8,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.provider.CalendarContract;
+import android.support.design.widget.Snackbar;
 import android.support.v4.net.ConnectivityManagerCompat;
 import android.util.Log;
+import android.view.View;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,6 +28,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import mx.com.armandroid.cinetecaapp.R;
 import mx.com.armandroid.cinetecaapp.model.Pelicula;
 
 /**
@@ -72,9 +75,15 @@ public class Utils {
         try {
             cal.setTime(mdf.parse(mdf.format(sdf.parse(date))));
         } catch (ParseException e) {
-            Log.e(TAG,"ERROR "+e);
+            Log.e(TAG, "ERROR " + e);
         }
         return cal;
+    }
+
+    public static String getCurrentDate(){
+        DateFormat sdf = new SimpleDateFormat("EEEE d 'de' MMMM 'de' yyyy",Locale.getDefault());
+        Calendar mCalendar = Calendar.getInstance();
+        return sdf.format(mCalendar.getTime());
     }
 
     public static  void addEvent(String title, String location, Calendar begin, Activity mActivity) {
@@ -89,5 +98,27 @@ public class Utils {
             Log.e(TAG, "INTENT ERROR [" + anfe + "]");
         }
 
+    }
+
+    public static void shareIntent(Activity activity, String label, String elementToShare){
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, elementToShare);
+        sendIntent.setType("text/plain");
+        activity.startActivity(Intent.createChooser(sendIntent, label));
+
+    }
+
+    public static void showSnackBar(View parentView, String message){
+        Snackbar.make(parentView,message,Snackbar.LENGTH_INDEFINITE)
+                .show();
+
+    }
+    public static String dateFromPicker(int year, int month, int day){
+        Calendar c = Calendar.getInstance();
+        c.set(year, month, day);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(c.getTime());
     }
 }

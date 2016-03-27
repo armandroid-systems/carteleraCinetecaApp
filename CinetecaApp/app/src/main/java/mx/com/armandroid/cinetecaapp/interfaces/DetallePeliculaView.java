@@ -13,4 +13,5 @@ public interface DetallePeliculaView {
     void mostrarImagen();
     void ocultarLoader();
     void muestraBotonTrailer();
+    void veAtras();
 }

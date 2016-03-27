@@ -1,16 +1,17 @@
 package mx.com.armandroid.cinetecaapp.view.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -27,12 +28,13 @@ import mx.com.armandroid.cinetecaapp.utils.Utils;
 /**
  * Created by zadtankus on 7/03/16.
  */
-public class FragmentCartelera extends BaseFragment implements CarteleraView {
+public class FragmentCartelera extends BaseFragment implements CarteleraView, Toolbar.OnMenuItemClickListener {
     private static final String TAG = FragmentCartelera.class.getSimpleName();
 
     private AVLoadingIndicatorView mProgress;
     private ImageView imageView;
     private RecyclerView cartelera;
+    private Toolbar carteleraToolbar;
 
     private PresenterCarteleraImpl presenter;
 
@@ -41,12 +43,17 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View carteleraView = inflater.inflate(R.layout.fragment_cartelera,container,false);
 
+        carteleraToolbar = (Toolbar)carteleraView.findViewById(R.id.carteleraToolbar);
         mProgress = (AVLoadingIndicatorView) carteleraView.findViewById(R.id.progressBarCartelera);
         imageView = (ImageView) carteleraView.findViewById(R.id.imageViewFail);
         cartelera = (RecyclerView) carteleraView.findViewById(R.id.recyclerCartelera);
 
-        presenter = new PresenterCarteleraImpl(new InteractorImpl(getContext()),this);
-        presenter.getCarteleraFromApi("2016-03-16");
+        carteleraToolbar.setOnMenuItemClickListener(this);
+        carteleraToolbar.inflateMenu(R.menu.menu_cartelera);
+        carteleraToolbar.setTitle(getString(R.string.title_cartelera));
+
+        presenter = new PresenterCarteleraImpl(new InteractorImpl(getActivity().getBaseContext()),this);
+        presenter.getCarteleraFromRepo();
 
         return carteleraView;
     }
@@ -57,21 +64,41 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
     }
 
     @Override
+    public void escondeRecycler() {
+        cartelera.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void escondeImagenError() {
+        imageView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void muestraLoader() {
+        mProgress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void muestraImgError() {
         imageView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void muestraMensaje(String msj) {
-
+        Utils.showSnackBar(getView(),getString(R.string.message_server_error));
     }
-
+    @Override
+    public void muestraDatePicker() {
+        FragmentDatePicker mDatePicker = new FragmentDatePicker();
+        mDatePicker.setmViewCartelera(this);
+        mDatePicker.show(getActivity().getFragmentManager(),Constants.VIEW_PICKER);
+    }
     @Override
     public void veADetallePelicula(Pelicula pelicula) {
         try {
             Bundle mBundle = new Bundle();
             mBundle.putParcelable(Constants.KEY_PARAM, pelicula );
-            ScreenManager.screenChange(getActivity(),
+            ScreenManager.screenChange((AppCompatActivity)getActivity(),
                     R.id.screenWrapper,
                     FragmentDetallePelicula.class,
                     mBundle,
@@ -88,7 +115,7 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
     public void createRecyclerView(RecyclerCarteleraAdapter adapter) {
         cartelera.setVisibility(View.VISIBLE);
         Log.d(TAG,"SETTING RECYCLER");
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity().getBaseContext());
         cartelera.setLayoutManager(llm);
         cartelera.setAdapter(adapter);
     }
@@ -103,10 +130,24 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView {
 
     @Override
     public void compartirPelicula(String pelicula) {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, pelicula);
-        sendIntent.setType("text/plain");
-        startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.label_compartir_ventana)));
+        Utils.shareIntent(getActivity(),
+                getString(R.string.label_compartir_ventana),
+                pelicula);
+    }
+
+    @Override
+    public void obtenCarteleraDia(String date) {
+        presenter.getCarteleraFromApi(date);
+    }
+
+    @Override
+    public void colocarFechaEnBarra(String date) {
+        carteleraToolbar.setSubtitle(date);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        presenter.clickMenuButtonAdapter(item.getItemId());
+        return false;
     }
 }

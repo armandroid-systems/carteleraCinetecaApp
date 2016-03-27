@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CinetecaApp</string>
+    <string name="app_name">Cartelera cineteca</string>
     <string name="title_activity_main">MainActivity</string>
     <!--Labels-->
     <string name="label_titulo">Titulo Pelicula</string>
@@ -10,4 +10,12 @@
     <string name="label_compartir">Compartir</string>
     <string name="label_acalendario">Agendar</string>
     <string name="label_compartir_ventana">Comparte esta pelicula con: </string>
+    <!--MENUS-->
+    <string name="menu_dia">Busca por dia</string>
+    <!--TitleBar-->
+    <string name="title_detail">Detalle pelicula</string>
+    <string name="title_cartelera">Cartelera</string>
+    <!--messages-->
+    <string name="message_no_network">No cuenta con una conexi\u00f3n a internet, por lo tanto la aplicaci\u00f3n se cerrara</string>
+    <string name="message_server_error">No se pudo establecer comunicaci\u00f3n con el servidor</string>
 </resources>

@@ -5,5 +5,7 @@ package mx.com.armandroid.cinetecaapp.interfaces;
  */
 public interface PresenterSplash {
 
-    void conexionActiva();
+    void obtenerCartelera();
+    void clickDialogAlert();
+
 }

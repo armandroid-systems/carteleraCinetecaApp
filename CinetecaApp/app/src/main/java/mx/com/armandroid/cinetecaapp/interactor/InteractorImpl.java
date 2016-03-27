@@ -6,6 +6,7 @@ import mx.com.armandroid.cinetecaapp.interfaces.CinetecaCallback;
 import mx.com.armandroid.cinetecaapp.interfaces.Interactor;
 import mx.com.armandroid.cinetecaapp.model.Respuesta;
 import mx.com.armandroid.cinetecaapp.network.CinetecaApi;
+import mx.com.armandroid.cinetecaapp.repository.Repository;
 import mx.com.armandroid.cinetecaapp.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,21 +27,17 @@ public class InteractorImpl implements Interactor{
     }
 
     @Override
-    public void compruebaConexion(CinetecaCallback cb) {
-        if(Utils.isConnectedToInternet(mContext)){
-            cb.onSuccess(null);
-        }else{
-            cb.onError(null);
-        }
+    public Respuesta getCacheCartelera() {
+        return Repository.getInstance().getmRespuesta();
     }
 
     @Override
     public void cartelera(String fecha, final CinetecaCallback cb) {
         if(Utils.isConnectedToInternet(mContext)){
-
             restApi.getCinetecaService().carteleraDia(fecha).enqueue(new Callback<Respuesta>() {
                 @Override
                 public void onResponse(Call<Respuesta> call, Response<Respuesta> response) {
+                    Repository.getInstance().setmRespuesta(response.body());
                     cb.onSuccess(response.body());
                 }
 

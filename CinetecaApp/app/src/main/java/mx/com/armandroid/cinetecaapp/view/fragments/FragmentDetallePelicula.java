@@ -3,7 +3,9 @@ package mx.com.armandroid.cinetecaapp.view.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
 import mx.com.armandroid.cinetecaapp.interfaces.DetallePeliculaView;
 import mx.com.armandroid.cinetecaapp.model.Pelicula;
 import mx.com.armandroid.cinetecaapp.presenter.PresenterDetallePeliculaImpl;
+import mx.com.armandroid.cinetecaapp.utils.ScreenManager;
 import mx.com.armandroid.cinetecaapp.utils.Utils;
 
 /**
@@ -44,7 +47,12 @@ public class FragmentDetallePelicula extends BaseFragment implements DetallePeli
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View detalleView = inflater.inflate(R.layout.fragment_detalle_pelicula, container,false);
 
-        presenterDetalle =  new PresenterDetallePeliculaImpl(new InteractorImpl(getContext()),this);
+        Toolbar mToolbar = (Toolbar) detalleView.findViewById(R.id.detalleToolbar);
+        mToolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace_white_24dp);
+        mToolbar.setTitle(getString(R.string.title_detail));
+        mToolbar.setNavigationOnClickListener(this);
+
+        presenterDetalle =  new PresenterDetallePeliculaImpl(new InteractorImpl(getActivity().getBaseContext()),this);
 
         linearWrapper = (LinearLayout) detalleView.findViewById(R.id.detailMainWrapper);
         progressDetalle = (AVLoadingIndicatorView) detalleView.findViewById(R.id.progressBarDetalle);
@@ -83,13 +91,19 @@ public class FragmentDetallePelicula extends BaseFragment implements DetallePeli
 
     @Override
     public void colocaMensaje(String mensaje) {
-
+        Utils.showSnackBar(getView(),getString(R.string.message_server_error));
     }
 
     @Override
     public void verTrailer() {
         Utils.watchYoutubeVideo(peliDeCartelera.trailer,getActivity());
 
+    }
+
+    @Override
+    public void veAtras() {
+        Log.d(TAG,"REGRESANDO A VISTA ANTERIOR...");
+        ScreenManager.screenBack((AppCompatActivity)getActivity());
     }
 
     @Override

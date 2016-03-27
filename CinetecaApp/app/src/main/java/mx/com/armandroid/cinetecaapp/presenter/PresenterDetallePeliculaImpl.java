@@ -41,6 +41,7 @@ public class PresenterDetallePeliculaImpl implements PresenterDetallePelicula, C
                 detalleView.verTrailer();
                 break;
             default:
+                detalleView.veAtras();
                 break;
         }
     }

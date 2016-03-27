@@ -5,75 +5,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/progressBarDetalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:indicator="Pacman"
-        app:indicator_color="@color/colorPrimary"
-        android:layout_gravity="center_horizontal"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageViewFail"
-        android:visibility="gone"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/cloud_fail" />
-
-
-    <LinearLayout
-        android:id="@+id/detailMainWrapper"
-        android:orientation="vertical"
-        android:visibility="gone"
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
-            android:id="@+id/headerDetail"
+        <FrameLayout
             android:orientation="vertical"
-            android:layout_weight="0.6"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/progressBarDetalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:indicator="Pacman"
+                app:indicator_color="@color/colorPrimary"
+                android:layout_gravity="center|center_vertical"/>
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/imageViewImgDetalle"
-                android:src="@drawable/cineteca_logo" />
-        </LinearLayout>
+                android:id="@+id/imageViewFail"
+                android:visibility="gone"
+                android:layout_gravity="center|center_vertical"
+                android:src="@drawable/cloud_fail" />
 
-        <LinearLayout
-            android:id="@+id/bodyDetail"
-            android:orientation="vertical"
-            android:layout_weight="0.4"
+
+            <LinearLayout
+                android:id="@+id/detailMainWrapper"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/headerDetail"
+                    android:orientation="vertical"
+                    android:layout_weight="0.6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageViewImgDetalle"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/cineteca_logo" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bodyDetail"
+                    android:orientation="vertical"
+                    android:layout_weight="0.4"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_format_title_grey600_24dp"
+                        style="@style/textTitles"
+                        android:text="New Text"
+                        android:id="@+id/textViewTituloDetalle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_filmstrip_grey600_24dp"
+                        style="@style/textGeneral"
+                        android:text="New Text"
+                        android:id="@+id/textViewSinopsisCompleta" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_calendar_clock_grey600_24dp"
+                        style="@style/textGeneral"
+                        android:text="New Text"
+                        android:id="@+id/textViewHorariosDetalle" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/detalleToolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:minHeight="?android:actionBarSize"
+            android:title="@string/title_detail"
+            app:theme="@style/toolBarStyle"
+            app:layout_scrollFlags="scroll|enterAlways"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_format_title_grey600_24dp"
-                android:text="New Text"
-                android:id="@+id/textViewTituloDetalle" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_filmstrip_grey600_24dp"
-                android:text="New Text"
-                android:id="@+id/textViewSinopsisCompleta" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_calendar_clock_grey600_24dp"
-                android:text="New Text"
-                android:id="@+id/textViewHorariosDetalle" />
-        </LinearLayout>
-    </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/verTrailer"

@@ -9,12 +9,19 @@ import mx.com.armandroid.cinetecaapp.model.Respuesta;
  */
 public interface CarteleraView {
 
-
+    void escondeLoader();
+    void escondeRecycler();
+    void escondeImagenError();
+    void muestraMensaje(String msj);
+    void muestraImgError();
+    void muestraDatePicker();
+    void muestraLoader();
     void createRecyclerView(RecyclerCarteleraAdapter adapter);
     void veADetallePelicula(Pelicula pelicula);
     void agregaACalendario(Pelicula evento);
     void compartirPelicula(String pelicula);
-    void muestraMensaje(String msj);
-    void muestraImgError();
-    void escondeLoader();
+    void obtenCarteleraDia(String date);
+    void colocarFechaEnBarra(String date);
+
+
 }
