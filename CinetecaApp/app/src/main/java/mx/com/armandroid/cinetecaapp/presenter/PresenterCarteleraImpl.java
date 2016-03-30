@@ -2,24 +2,18 @@ package mx.com.armandroid.cinetecaapp.presenter;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import mx.com.armandroid.cinetecaapp.R;
 import mx.com.armandroid.cinetecaapp.adapters.RecyclerCarteleraAdapter;
 import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
-import mx.com.armandroid.cinetecaapp.interfaces.CardClick;
-import mx.com.armandroid.cinetecaapp.interfaces.CarteleraView;
-import mx.com.armandroid.cinetecaapp.interfaces.CinetecaCallback;
-import mx.com.armandroid.cinetecaapp.interfaces.PresenterCartelera;
+import mx.com.armandroid.cinetecaapp.interfaces.interfacegeneral.CardClick;
+import mx.com.armandroid.cinetecaapp.interfaces.interfaceview.CarteleraView;
+import mx.com.armandroid.cinetecaapp.interfaces.interfacecallback.CinetecaCallback;
+import mx.com.armandroid.cinetecaapp.interfaces.interfacepresenter.PresenterCartelera;
 import mx.com.armandroid.cinetecaapp.model.Pelicula;
 import mx.com.armandroid.cinetecaapp.model.Respuesta;
 import mx.com.armandroid.cinetecaapp.utils.Constants;
-import mx.com.armandroid.cinetecaapp.utils.Utils;
 
 /**
  * Created by armando.dominguez on 09/03/2016.

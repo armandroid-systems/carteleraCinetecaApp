@@ -11,7 +11,7 @@ import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 import mx.com.armandroid.cinetecaapp.R;
 import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
-import mx.com.armandroid.cinetecaapp.interfaces.SplashView;
+import mx.com.armandroid.cinetecaapp.interfaces.interfaceview.SplashView;
 import mx.com.armandroid.cinetecaapp.presenter.PresenterSplashImpl;
 
 public class SplashActivity extends AppCompatActivity implements SplashView, AlertDialog.OnClickListener {

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +18,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import mx.com.armandroid.cinetecaapp.R;
 import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
-import mx.com.armandroid.cinetecaapp.interfaces.DetallePeliculaView;
+import mx.com.armandroid.cinetecaapp.interfaces.interfaceview.DetallePeliculaView;
 import mx.com.armandroid.cinetecaapp.model.Pelicula;
 import mx.com.armandroid.cinetecaapp.presenter.PresenterDetallePeliculaImpl;
 import mx.com.armandroid.cinetecaapp.utils.ScreenManager;

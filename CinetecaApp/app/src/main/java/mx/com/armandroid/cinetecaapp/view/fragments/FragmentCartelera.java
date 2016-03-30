@@ -18,7 +18,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import mx.com.armandroid.cinetecaapp.R;
 import mx.com.armandroid.cinetecaapp.adapters.RecyclerCarteleraAdapter;
 import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
-import mx.com.armandroid.cinetecaapp.interfaces.CarteleraView;
+import mx.com.armandroid.cinetecaapp.interfaces.interfaceview.CarteleraView;
 import mx.com.armandroid.cinetecaapp.model.Pelicula;
 import mx.com.armandroid.cinetecaapp.presenter.PresenterCarteleraImpl;
 import mx.com.armandroid.cinetecaapp.utils.Constants;

@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import mx.com.armandroid.cinetecaapp.R;
-import mx.com.armandroid.cinetecaapp.interfaces.CardClick;
+import mx.com.armandroid.cinetecaapp.interfaces.interfacegeneral.CardClick;
 
 /**
  * Created by armando.dominguez on 08/03/2016.

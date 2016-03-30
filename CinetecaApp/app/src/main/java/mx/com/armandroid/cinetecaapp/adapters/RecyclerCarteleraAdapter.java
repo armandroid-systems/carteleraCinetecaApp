@@ -2,25 +2,18 @@ package mx.com.armandroid.cinetecaapp.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
-
 import java.util.List;
-import java.util.zip.Inflater;
 
 import mx.com.armandroid.cinetecaapp.R;
-import mx.com.armandroid.cinetecaapp.interfaces.CardClick;
+import mx.com.armandroid.cinetecaapp.interfaces.interfacegeneral.CardClick;
 import mx.com.armandroid.cinetecaapp.model.Pelicula;
-import mx.com.armandroid.cinetecaapp.model.Respuesta;
 import mx.com.armandroid.cinetecaapp.utils.ItemCarteleraHolder;
-import mx.com.armandroid.cinetecaapp.utils.Utils;
 
 /**
  * Created by armando.dominguez on 08/03/2016.

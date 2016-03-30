@@ -2,8 +2,8 @@ package mx.com.armandroid.cinetecaapp.interactor;
 
 import android.content.Context;
 
-import mx.com.armandroid.cinetecaapp.interfaces.CinetecaCallback;
-import mx.com.armandroid.cinetecaapp.interfaces.Interactor;
+import mx.com.armandroid.cinetecaapp.interfaces.interfacecallback.CinetecaCallback;
+import mx.com.armandroid.cinetecaapp.interfaces.interfaceinteractor.Interactor;
 import mx.com.armandroid.cinetecaapp.model.Respuesta;
 import mx.com.armandroid.cinetecaapp.network.CinetecaApi;
 import mx.com.armandroid.cinetecaapp.repository.Repository;

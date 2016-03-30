@@ -9,7 +9,7 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
-import mx.com.armandroid.cinetecaapp.interfaces.CarteleraView;
+import mx.com.armandroid.cinetecaapp.interfaces.interfaceview.CarteleraView;
 import mx.com.armandroid.cinetecaapp.utils.Utils;
 
 /**

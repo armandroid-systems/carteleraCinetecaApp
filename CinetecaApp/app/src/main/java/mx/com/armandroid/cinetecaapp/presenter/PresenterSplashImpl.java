@@ -1,9 +1,9 @@
 package mx.com.armandroid.cinetecaapp.presenter;
 
 import mx.com.armandroid.cinetecaapp.interactor.InteractorImpl;
-import mx.com.armandroid.cinetecaapp.interfaces.CinetecaCallback;
-import mx.com.armandroid.cinetecaapp.interfaces.PresenterSplash;
-import mx.com.armandroid.cinetecaapp.interfaces.SplashView;
+import mx.com.armandroid.cinetecaapp.interfaces.interfacecallback.CinetecaCallback;
+import mx.com.armandroid.cinetecaapp.interfaces.interfacepresenter.PresenterSplash;
+import mx.com.armandroid.cinetecaapp.interfaces.interfaceview.SplashView;
 import mx.com.armandroid.cinetecaapp.model.Respuesta;
 
 /**
