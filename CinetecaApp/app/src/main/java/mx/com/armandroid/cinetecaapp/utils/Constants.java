@@ -15,7 +15,7 @@ public class Constants {
     public static final String VIEW_PICKER  = "view_picker";
     public static final String CINETECA_LOCATION = "19.360109, -99.164730";
 
-    public static final String API_ENDPOINT = "http://192.168.100.4:1337/carteleradia/";
+    public static final String API_ENDPOINT = "http://45.55.232.2:1337/carteleradia/";
     public static final String URL_YOUTUBE  = "https://www.youtube.com/watch?v=";
     public static final String URL_CINETECA = "http://www.cinetecanacional.net/";
 }
