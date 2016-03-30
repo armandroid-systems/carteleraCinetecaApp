@@ -1,4 +1,4 @@
-package mx.com.armandroid.cinetecaapp.interfaces;
+package mx.com.armandroid.cinetecaapp.interfaces.interfaceview;
 
 /**
  * Created by armando.dominguez on 08/03/2016.

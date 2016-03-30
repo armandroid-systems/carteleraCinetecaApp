@@ -1,4 +1,4 @@
-package mx.com.armandroid.cinetecaapp.interfaces;
+package mx.com.armandroid.cinetecaapp.interfaces.interfacecallback;
 
 import mx.com.armandroid.cinetecaapp.model.Respuesta;
 
