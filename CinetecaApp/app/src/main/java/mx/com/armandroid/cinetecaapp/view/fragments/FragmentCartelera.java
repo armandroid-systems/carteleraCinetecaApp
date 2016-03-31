@@ -53,7 +53,6 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView, To
         carteleraToolbar.setTitle(getString(R.string.title_cartelera));
 
         presenter = new PresenterCarteleraImpl(new InteractorImpl(getActivity().getBaseContext()),this);
-        presenter.getCarteleraFromRepo();
 
         return carteleraView;
     }
@@ -149,5 +148,11 @@ public class FragmentCartelera extends BaseFragment implements CarteleraView, To
     public boolean onMenuItemClick(MenuItem item) {
         presenter.clickMenuButtonAdapter(item.getItemId());
         return false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.getCarteleraFromRepo();
     }
 }

@@ -63,11 +63,6 @@ public class FragmentDetallePelicula extends BaseFragment implements DetallePeli
         horarios = (TextView) detalleView.findViewById(R.id.textViewHorariosDetalle);
         fabTrailer = (FloatingActionButton) detalleView.findViewById(R.id.verTrailer);
 
-        if(mParam != null){
-            peliDeCartelera = (Pelicula)mParam;
-            Log.d(TAG, "PARAMETRO ENCONTRADO...");
-            presenterDetalle.getDetallePelicula(peliDeCartelera.urlDetail);
-        }
 
         fabTrailer.setOnClickListener(this);
 
@@ -124,5 +119,15 @@ public class FragmentDetallePelicula extends BaseFragment implements DetallePeli
     @Override
     public void onClick(View v) {
         presenterDetalle.eventClick(v.getId());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(mParam != null){
+            peliDeCartelera = (Pelicula)mParam;
+            Log.d(TAG, "PARAMETRO ENCONTRADO...");
+            presenterDetalle.getDetallePelicula(peliDeCartelera.urlDetail);
+        }
     }
 }
