@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.provider.CalendarContract;
 import android.support.design.widget.Snackbar;
-import android.support.v4.net.ConnectivityManagerCompat;
 import android.util.Log;
 import android.view.View;
 
@@ -28,8 +27,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import mx.com.armandroid.cinetecaapp.R;
-import mx.com.armandroid.cinetecaapp.model.Pelicula;
+import mx.com.armandroid.cinetecaapp.data.model.Pelicula;
 
 /**
  * Created by armando.dominguez on 07/03/2016.
