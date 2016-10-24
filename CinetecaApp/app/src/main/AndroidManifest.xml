@@ -11,14 +11,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activities.SplashActivity">
+        <activity
+            android:name=".presentation.view.activities.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activities.MainActivity"></activity>
+        <activity
+            android:name=".presentation.view.activities.MainActivity"
+            android:screenOrientation="portrait"></activity>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="8f9dc10423bf607f0dfaec17b2ac5fd63deb17eb" />
